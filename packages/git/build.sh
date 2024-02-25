@@ -2,11 +2,11 @@ TERMUX_PKG_HOMEPAGE=https://git-scm.com/
 TERMUX_PKG_DESCRIPTION="Fast, scalable, distributed revision control system"
 TERMUX_PKG_LICENSE="GPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux"
-TERMUX_PKG_VERSION="2.43.2"
+TERMUX_PKG_VERSION="2.44.0"
 TERMUX_PKG_SRCURL=https://mirrors.kernel.org/pub/software/scm/git/git-${TERMUX_PKG_VERSION}.tar.xz
-TERMUX_PKG_SHA256=f612c1abc63557d50ad3849863fc9109670139fc9901e574460ec76e0511adb9
+TERMUX_PKG_SHA256=e358738dcb5b5ea340ce900a0015c03ae86e804e7ff64e47aa4631ddee681de3
 TERMUX_PKG_AUTO_UPDATE=true
-TERMUX_PKG_DEPENDS="libcurl, libiconv, less, openssl, pcre2, zlib"
+TERMUX_PKG_DEPENDS="libcurl, libexpat, libiconv, less, openssl, pcre2, zlib"
 TERMUX_PKG_RECOMMENDS="openssh"
 TERMUX_PKG_SUGGESTS="perl"
 
@@ -17,6 +17,7 @@ ac_cv_header_libintl_h=no
 ac_cv_iconv_omits_bom=no
 ac_cv_snprintf_returns_bogus=no
 --with-curl
+--with-expat
 --with-shell=$TERMUX_PREFIX/bin/sh
 --with-tcltk=$TERMUX_PREFIX/bin/wish
 "
@@ -25,7 +26,6 @@ ac_cv_snprintf_returns_bogus=no
 TERMUX_PKG_EXTRA_MAKE_ARGS="
 NO_NSEC=1
 NO_GETTEXT=1
-NO_EXPAT=1
 NO_INSTALL_HARDLINKS=1
 PERL_PATH=$TERMUX_PREFIX/bin/perl
 USE_LIBPCRE2=1
