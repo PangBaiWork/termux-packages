@@ -1,0 +1,37 @@
+diff -uNr hugo/commands/commandeer.go modhugo/commands/commandeer.go
+--- hugo/commands/commandeer.go	2023-11-02 01:57:00.000000000 +0800
++++ modhugo/commands/commandeer.go	2024-05-31 13:11:45.891276513 +0800
+@@ -534,7 +534,7 @@
+ 	cmd.Flags().BoolVar(&r.forceSyncStatic, "forceSyncStatic", false, "copy all files when static is changed.")
+ 	cmd.Flags().BoolP("noTimes", "", false, "don't sync modification time of files")
+ 	cmd.Flags().BoolP("noChmod", "", false, "don't sync permission mode of files")
+-	cmd.Flags().BoolP("noBuildLock", "", false, "don't create .hugo_build.lock file")
++	cmd.Flags().BoolP("noBuildLock", "", true, "don't create .hugo_build.lock file")
+ 	cmd.Flags().BoolP("printI18nWarnings", "", false, "print missing translations")
+ 	cmd.Flags().BoolP("printPathWarnings", "", false, "print warnings on duplicate target paths etc.")
+ 	cmd.Flags().BoolP("printUnusedTemplates", "", false, "print warnings on unused templates.")
+diff -uNr hugo/config/allconfig/configlanguage.go modhugo/config/allconfig/configlanguage.go
+--- hugo/config/allconfig/configlanguage.go	2023-11-02 01:57:00.000000000 +0800
++++ modhugo/config/allconfig/configlanguage.go	2024-05-31 16:44:49.309278620 +0800
+@@ -88,7 +88,8 @@
+ }
+ 
+ func (c ConfigLanguage) NoBuildLock() bool {
+-	return c.config.NoBuildLock
++//	return c.config.NoBuildLock
++ return true;
+ }
+ 
+ func (c ConfigLanguage) NewContentEditor() string {
+diff -uNr hugo/docs/data/docs.yaml modhugo/docs/data/docs.yaml
+--- hugo/docs/data/docs.yaml	2023-11-02 01:57:00.000000000 +0800
++++ modhugo/docs/data/docs.yaml	2024-05-31 12:59:02.747276804 +0800
+@@ -1317,7 +1317,7 @@
+     vendorClosest: false
+     workspace: "off"
+   newContentEditor: ""
+-  noBuildLock: false
++  noBuildLock: true
+   noChmod: false
+   noTimes: false
+   outputFormats:
